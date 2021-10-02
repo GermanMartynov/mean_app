@@ -1,22 +1,25 @@
-var express = require('express');
+const express = require('express')
+const app = express()
 
-var app = express();
+// определяем хост и порт приложения
+const host = '127.0.0.1'
+const port = 3000
 
-app.set('port', process.env.PORT || 3000);
+// установка pug в качестве движка шаблонов	
+app.set('views', './views')
+app.set('view engine', 'pug');
 
 //маршруты приложения
-app.get('/', function(req, res){
-    res.type('text/plain');
-    res.send('Главная страница Meadowlark Travel');
+app.get('/', (req, res)=>{
+    res.render('main', { title: 'Greetings from Pug' });
     });
-app.get('/about', function(req, res){
-    res.type('text/plain');
+app.get('/about', (req, res)=>{
     res.send('Страница \"О Meadowlark Travel\"');
     });
 
 // пользовательская страница 404
 app.use(function(req, res){
-    res.type('text/plain');
+    //res.type('text/plain');
     res.status(404);
     res.send('404 — Не найдено');
     });
@@ -28,7 +31,9 @@ app.use(function(err, req, res, next){
     res.status(500);
     res.send('500 — Ошибка сервера');
     });
-    app.listen(app.get('port'), function(){
+
+// начинаем прослушивать подключения на порту
+app.listen(port, host, function(){
     console.log( 'Express запущен на http://localhost:' +
     app.get('port') + '; нажмите Ctrl+C для завершения.' );
     });
