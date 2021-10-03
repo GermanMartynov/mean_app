@@ -34,6 +34,6 @@ app.use(function(err, req, res, next){
 
 // начинаем прослушивать подключения на порту
 app.listen(port, host, function(){
-    console.log( 'Express запущен на http://localhost:' +
-    app.get('port') + '; нажмите Ctrl+C для завершения.' );
+    console.log(`Server listens http://${host}:${port}`+
+    'Нажмите Ctrl+C для завершения.')
     });
