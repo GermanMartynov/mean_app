@@ -11,10 +11,10 @@ app.set('view engine', 'pug');
 
 //маршруты приложения
 app.get('/', (req, res)=>{
-    res.render('main', { title: 'Greetings from Pug' });
+    res.render('main', { author: 'G.M.' });
     });
 app.get('/about', (req, res)=>{
-    res.send('Страница \"О Meadowlark Travel\"');
+    res.render('about');
     });
 
 // пользовательская страница 404
